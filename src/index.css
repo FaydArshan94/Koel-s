@@ -1,1 +1,21 @@
 @import "tailwindcss";
+
+@font-face {
+    font-family: MonaSans;
+    src: url("components/Mona_Sans/MonaSans-VariableFont_wdth,wght.ttf");
+}
+@font-face {
+    font-family: PlayfairDisplay;
+    src: url("src/components/PlayfairDisplay-Regular.ttf");
+}
+
+.live::-webkit-scrollbar{
+    display: none;
+}
+
+
+
+@font-face {
+    font-family: Baskville;
+    src: url("src\components\BASKVILL.TTF");
+}

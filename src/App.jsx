@@ -1,11 +1,14 @@
-import React from 'react'
+import React from "react";
+import Navbar from "./components/Navbar";
+import Hero from "./components/Hero";
 
-const App = () => {
+function App() {
   return (
-    <div className='text-9xl'>
-      app
+    <div className="font-sans overflow-hidden">
+      <Navbar />
+      <Hero />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
