@@ -1,5 +1,5 @@
-import { motion, useMotionValue } from "framer-motion";
-import React, { useRef, useEffect } from "react";
+import { motion, useAnimation, useMotionValue } from "framer-motion";
+import React, { useRef, useEffect, useState } from "react";
 
 const liveCards = [
   {
@@ -76,11 +76,11 @@ const liveCards = [
 
 const repeatedCards = [...liveCards, ...liveCards, ...liveCards]; // Triplet
 
-
-
-  const Hero = () => {
+const Hero = () => {
   const containerRef = useRef();
-  const section3Ref = useRef(); // Add this ref
+  const section1Ref = useRef();
+  const section2Ref = useRef(); // Add this ref
+  // Add this ref
   const x = useMotionValue(0);
 
   // Width of one full image set
@@ -109,97 +109,193 @@ const repeatedCards = [...liveCards, ...liveCards, ...liveCards]; // Triplet
     }
   };
 
-    return (
+  // Typing effect for the intro paragraph
+  const fullText =
+    "Koel's Fashion is a live or niche event, brand or collection that has emerged after recent trends.";
+  const [typedText, setTypedText] = useState("");
+
+  useEffect(() => {
+    let i = 0;
+    let raf;
+    let startTimeout = setTimeout(type, 0); // Small delay before typing starts
+
+    function type() {
+      setTypedText(fullText.slice(0, i + 69));
+      i++;
+      if (i < fullText.length) {
+        raf = setTimeout(type, 60); // Smooth, not too fast
+      }
+    }
+
+    return () => {
+      clearTimeout(startTimeout);
+      clearTimeout(raf);
+    };
+  }, []);
+
+  return (
     <div className="w-full flex flex-col select-none py-10 min-h-screen px-6">
       {/* Section 1 */}
-      <section className="section-1 flex h-[20vh] items-center justify-around pr-20">
-        <p className="w-[17%] text-left text-sm text-zinc-400 font-semiboldbold">
-          Koel's Fashion is a live or niche event, brand or collection that has
-          emerged after recent trends.
-        </p>
-        <img
-          className="w-[35vw] opacity-20 pl-20"
-          src="src/assets/line.png"
-          alt=""
-        />
-        <h1 className="text-[10rem] text-zinc-900 font-[MonaSans]">THE</h1>
-      </section>
+      <section className="section-1 flex h-[20vh] items-center px-6 justify-between  ">
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+          className="w-[17%] text-left text-sm text-zinc-400 font-semiboldbold"
+        >
+          {typedText}
+          <span className="animate-pulse">|</span>
+        </motion.p>
+        <div className="relative line w-[28%] h-32 flex items-center  justify-center">
+          <div className="flex items-center justify-between  h-full w-full">
+            <motion.div
+              initial={{ scaleX: 0 }}
+              animate={{ scaleX: 1 }}
+              transition={{ duration: 1, ease: "easeOut", delay: 0.3 }}
+              className="absolute top-1/2 left-0 w-[38%] border-t border-zinc-300"
+              style={{ originX: 0 }}
+            ></motion.div>
+            <motion.div
+              initial={{ scaleX: 0 }}
+              animate={{ scaleX: 1 }}
+              transition={{ duration: 1, ease: "easeOut", delay: 0.3 }}
+              className="absolute top-1/2 right-0 w-[38%] border-t border-zinc-300"
+              style={{ originX: 1 }}
+            ></motion.div>
+          </div>
+          {/* <div className="absolute left-0 text-2xl -translate-y-1/2 top-1/2"></div> */}
+          {/* <div className="absolute right-0 text-2xl -translate-y-1/2 top-1/2"></div> */}
+          <div className="flex items-center absolute justify-center gap-[1.1rem] z-10">
+            <motion.div
+              initial={{ y: "-200vh" }}
+              animate={{ y: "0%", opacity: 1 }}
+              transition={{ duration: 1, ease: "easeOut", delay: 0 }}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.1 }}
+              className="w-10 h-10 hover:scale-110 transition-transform rounded-full border-1 border-zinc-300 bg-white z-10 "
+            ></motion.div>
+            <motion.div
+              initial={{ y: "-200vh" }}
+              animate={{ y: "0%", opacity: 1 }}
+              transition={{ duration: 1, ease: "easeOut", delay: 0.1 }}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.1 }}
+              className="w-10 h-10 hover:scale-110 transition-transform rounded-full border-1 border-zinc-300 bg-white z-20 -ml-8 "
+            ></motion.div>
+            <motion.div
+              initial={{ y: "-200vh" }}
+              animate={{ y: "0%", opacity: 1 }}
+              transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.1 }}
+              className="w-10 h-10 hover:scale-110 transition-transform rounded-full border-1 border-zinc-300 bg-white z-30 -ml-8 "
+            ></motion.div>
+          </div>
+        </div>
 
-      {/* Section 2 */}
+        <div className="the relative overflow-hidden h-[10rem] flex items-end">
+          <motion.h1
+            initial={{ y: "100%", opacity: 0 }}
+            animate={{ y: "0%", opacity: 1 }}
+            transition={{ duration: 1, ease: "easeOut", delay: 0 }}
+            className="text-[10rem] text-zinc-900 tracking-tighter font-[MonaSans] leading-none"
+            style={{ willChange: "transform" }}
+          >
+            THE
+          </motion.h1>
+        </div>
+      </section>
       <section className="section-2 flex items-center justify-around px-4 gap-10 pl-40 h-[25vh] overflow-hidden">
-        <h1 className="text-[10.5rem] tracking-wider w-90% font-medium text-zinc-950 font-[PlayfairDisplay]">
+        <motion.h1
+          initial={{ y: "100%", opacity: 0 }}
+          animate={{ y: "0%", opacity: 1 }}
+          transition={{ duration: 1, ease: "easeOut", delay: 0.2 }} // Add delay here
+          className="ULTIMATE text-[10.5rem] tracking-wider w-90% font-medium text-zinc-950 font-[PlayfairDisplay]"
+        >
           ULTIMATE{" "}
-        </h1>
+        </motion.h1>
         <p className="text-xs text-zinc-500 pt-16 font-bold leading-[23px] font-[MonaSans]">
           Sense of poise, good manners, and a graceful presence.
         </p>
       </section>
 
       {/* Section 3 */}
-      <section
-        ref={section3Ref}
-        className="section-3  select-none flex relative w-full h-[250vh] justify-center rounded-[3rem] border-[0.5px] border-zinc-100 bg-gradient-to-bl from-transparent via-[#f8f8f8] to-[#96f47f] shadow-gray-950"
-      >
+      <section className="section-3  select-none flex justify-between gap-4 relative w-full h-[250vh]  rounded-[3rem] border-[0.5px] border-zinc-100 bg-gradient-to-bl from-transparent via-[#f8f8f8] to-[#96f47f] shadow-gray-950">
         {/* FASHION Heading */}
-        <h1 className="text-[10rem] tracking-tight absolute font-[MonaSans] -top-8 text-zinc-950">
+
+        <motion.h1
+          initial={{ y: "100%", opacity: 0 }}
+          animate={{ y: "0%", opacity: 1 }}
+          transition={{ duration: 1, ease: "easeOut", delay: 0.8 }}
+          className="fashion  text-[10rem] tracking-tight absolute font-[MonaSans] left-1/2 -translate-x-1/2 -top-8 text-zinc-950"
+          style={{ willChange: "transform" }}
+        >
           FASHION
-        </h1>
+        </motion.h1>
+
         {/* iPhone Image */}
 
-        <img
-          className="absolute h-[250vh]  w-1/2 select-none  -top-5 object-cover"
+        <motion.img
+          initial={{ y: 100, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 1.2, ease: "easeOut", delay: 1.5 }}
+          className="absolute h-[250vh] left-1/2 -translate-x-1/2 z-10 w-[60%] select-none -top-15 scale-[80%]"
           src="src/assets/Iphone.png"
           alt=""
         />
+
         {/* Floating Quotes */}
-        <div>
+        <div ref={section1Ref} className="w-1/3  h-1/3 ">
           <motion.div
             drag
-            dragConstraints={section3Ref}
-            animate={{ y: [0, -20, 0, 20, 0] }}
-            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute z-[100] rounded-xl shadow-md p-4 text-zinc-700 text-sm font-semibold w-[15vw]"
+            dragConstraints={section1Ref}
+            className="absolute z-20 rounded-xl shadow-md p-4 text-zinc-700 text-sm font-semibold w-[15vw]"
             style={{
               top: "30vh",
               left: "2vw",
-              zIndex: 2,
+              zIndex: 20,
             }}
           >
             Fashion is art, style is your personal expression.
           </motion.div>
+
           <motion.div
             drag
-            dragConstraints={section3Ref}
-            className="absolute z-[102] bg-white/80 rounded-xl flex flex-col gap-4 shadow-md p-4 text-zinc-700 text-sm font-semibold w-[20vw]"
+            dragConstraints={section1Ref}
+            className="absolute z-20 rounded-xl shadow-md p-4 text-zinc-700 text-sm font-semibold w-[15vw]"
+            style={{
+              top: "60vh",
+              left: "10vw",
+              zIndex: 20,
+            }}
+          >
+            Where your fashion journey begins.
+          </motion.div>
+        </div>
+
+        <div ref={section2Ref} className="w-1/3 h-1/3 ">
+          <motion.div
+            drag
+            dragConstraints={section2Ref}
+            className="absolute z-20 bg-white/80 rounded-xl   flex flex-col gap-4 shadow-md p-4 text-zinc-700 text-sm font-semibold w-[20vw]"
             style={{
               top: "40vh",
               right: "0",
-              zIndex: 2,
+              zIndex: 20,
             }}
           >
             <span>01</span>
             <p>Elegance is not standing out, but being remembered.</p>
           </motion.div>
+
           <motion.div
             drag
-            dragConstraints={section3Ref}
-            className="absolute z-[102] bg-white/80 rounded-xl shadow-md p-4 text-zinc-700 text-sm font-semibold w-[15vw]"
-            style={{
-              top: "60vh",
-              left: "5vw",
-              zIndex: 2,
-            }}
-          >
-            Wear confidence like you wear your favorite outfit.
-          </motion.div>
-          <motion.div
-            drag
-            dragConstraints={section3Ref}
-            className="absolute z-[102] bg-white/80 rounded-xl flex flex-col gap-4 shadow-md p-4 text-zinc-700 text-sm font-semibold w-[20vw]"
+            dragConstraints={section2Ref}
+            className="absolute z-20 bg-white/80 rounded-xl   flex flex-col gap-4 shadow-md p-4 text-zinc-700 text-sm font-semibold w-[20vw]"
             style={{
               top: "65vh",
               right: "0",
-              zIndex: 2,
+              zIndex: 20,
             }}
           >
             <span>02</span>
@@ -207,27 +303,39 @@ const repeatedCards = [...liveCards, ...liveCards, ...liveCards]; // Triplet
           </motion.div>
         </div>
 
-        <div className=" w-[70vw]  h-[40vh] absolute bottom-10 flex items-center justify-between">
-          <img
-            className="h-40 absolute left-10 z-[1]"
+        <div className="w-[70vw] h-[40vh] absolute bottom-10 left-1/2 -translate-x-1/2 flex items-center justify-between">
+          <motion.img
+            initial={{ opacity: 0, scale: 0.7 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.7, ease: "easeOut", delay: 2.8 }}
+            className="h-40 absolute bottom-24 left-20 z-0"
             src="src/assets/arrow-left.png"
             alt=""
           />
-          <img
-            className="h-40 absolute -top-20 right-10 z-[1]"
+          <motion.img
+            initial={{ opacity: 0, scale: 0.7 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.7, ease: "easeOut", delay: 2.95 }}
+            className="h-40 absolute -top-32 right-16 z-0"
             src="src/assets/arrow-right.png"
             alt=""
           />
         </div>
 
-        <div className=" w-[80vw] h-[40vh] absolute bottom-20 flex items-center justify-between">
-          <img
-            className="h-16 absolute left-0 top-20 z-[1]"
+        <div className="w-[80vw] h-[40vh] absolute bottom-20 left-1/2 -translate-x-1/2 flex items-center justify-between">
+          <motion.img
+            initial={{ opacity: 0,  }}
+            animate={{ opacity: 1,  }}
+            transition={{ duration: 0.7, ease: "easeOut", delay:3.5 }}
+            className="h-16 hover:scale-105 transition-transform duration-500 absolute left-0 top-10 z-[1]"
             src="src/assets/app-store.png"
             alt=""
           />
-          <img
-            className="w-40 absolute right-0 top-6  z-[1]"
+          <motion.img
+            initial={{ opacity: 0,  }}
+            animate={{ opacity: 1,  }}
+            transition={{ duration: 0.7, ease: "easeOut", delay: 3.5 }}
+            className="w-40 hover:scale-[130%] scale-125 transition-transform duration-500 absolute right-0 top-10 z-[1]"
             src="src/assets/google-play.png"
             alt=""
           />

@@ -4,7 +4,9 @@ module.exports = {
     fontFamily: {
       sans: ["Inter", "sans-serif"],
     },
-    extend: {},
+    extend: {
+     
+    },
   },
   plugins: [],
 };
