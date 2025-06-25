@@ -134,20 +134,20 @@ const Hero = () => {
   }, []);
 
   return (
-    <div className="w-full flex flex-col select-none py-10 min-h-screen px-6">
+    <div className="w-full flex flex-col items-center  select-none sm:py-10 py-0 min-h-screen">
       {/* Section 1 */}
-      <section className="section-1 flex h-[20vh] items-center px-6 justify-between  ">
+      <section className="section-1 flex flex-col  gap-0  md:flex-row items-center md:items-center sm:justify-between  sm:w-full md:px-6   md:gap-0 h-auto md:h-[20vh]">
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
-          className="w-[17%] text-left text-sm text-zinc-400 font-semiboldbold"
+          className="w-full md:w-[17%] text-left hidden sm:block text-xs sm:text-sm text-zinc-400 font-semiboldbold"
         >
           {typedText}
           <span className="animate-pulse">|</span>
         </motion.p>
-        <div className="relative line w-[28%] h-32 flex items-center  justify-center">
-          <div className="flex items-center justify-between  h-full w-full">
+        <div className="relative  hidden  line w-full md:w-[28%] sm:h-16 md:h-32 sm:flex items-center justify-center md:mt-0">
+          <div className="flex items-center justify-between h-full w-full">
             <motion.div
               initial={{ scaleX: 0 }}
               animate={{ scaleX: 1 }}
@@ -163,16 +163,14 @@ const Hero = () => {
               style={{ originX: 1 }}
             ></motion.div>
           </div>
-          {/* <div className="absolute left-0 text-2xl -translate-y-1/2 top-1/2"></div> */}
-          {/* <div className="absolute right-0 text-2xl -translate-y-1/2 top-1/2"></div> */}
-          <div className="flex items-center absolute justify-center gap-[1.1rem] z-10">
+          <div className="flex items-center absolute justify-center gap-2 md:gap-[1.1rem] z-10 left-1/2 -translate-x-1/2">
             <motion.div
               initial={{ y: "-200vh" }}
               animate={{ y: "0%", opacity: 1 }}
               transition={{ duration: 1, ease: "easeOut", delay: 0 }}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.1 }}
-              className="w-10 h-10 hover:scale-110 transition-transform rounded-full border-1 border-zinc-300 bg-white z-10 "
+              className="w-8 h-8 md:w-10 md:h-10 hover:scale-110 transition-transform rounded-full border-1 border-zinc-300 bg-white z-10"
             ></motion.div>
             <motion.div
               initial={{ y: "-200vh" }}
@@ -180,7 +178,7 @@ const Hero = () => {
               transition={{ duration: 1, ease: "easeOut", delay: 0.1 }}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.1 }}
-              className="w-10 h-10 hover:scale-110 transition-transform rounded-full border-1 border-zinc-300 bg-white z-20 -ml-8 "
+              className="w-8 h-8 md:w-10 md:h-10 hover:scale-110 transition-transform rounded-full border-1 border-zinc-300 bg-white z-20 -ml-4 md:-ml-8"
             ></motion.div>
             <motion.div
               initial={{ y: "-200vh" }}
@@ -188,46 +186,47 @@ const Hero = () => {
               transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.1 }}
-              className="w-10 h-10 hover:scale-110 transition-transform rounded-full border-1 border-zinc-300 bg-white z-30 -ml-8 "
+              className="w-8 h-8 md:w-10 md:h-10 hover:scale-110 transition-transform rounded-full border-1 border-zinc-300 bg-white z-30 -ml-4 md:-ml-8"
             ></motion.div>
           </div>
         </div>
-
-        <div className="the relative overflow-hidden h-[10rem] flex items-end">
+        <div className="the relative  overflow-hidden  md:h-[10rem] items-center  flex sm:items-end sm:mt-4 md:mt-0">
           <motion.h1
             initial={{ y: "100%", opacity: 0 }}
             animate={{ y: "0%", opacity: 1 }}
             transition={{ duration: 1, ease: "easeOut", delay: 0 }}
-            className="text-[10rem] text-zinc-900 tracking-tighter font-[MonaSans] leading-none"
+            className="text-[4.5rem] sm:text-[4rem] md:text-[6rem] lg:text-[10rem] text-zinc-900 tracking-tighter font-[MonaSans] leading-none"
             style={{ willChange: "transform" }}
           >
             THE
           </motion.h1>
         </div>
       </section>
-      <section className="section-2 flex items-center justify-around px-4 gap-10 pl-40 h-[25vh] overflow-hidden">
+
+      {/* section */}
+      <section className="section-2 -top-5 h-24 origin-top relative sm:flex sm:items-center sm:justify-around sm:px-4 sm:gap-10 sm:pl-40 p-0 sm:h-40 ">
         <motion.h1
           initial={{ y: "100%", opacity: 0 }}
           animate={{ y: "0%", opacity: 1 }}
           transition={{ duration: 1, ease: "easeOut", delay: 0.2 }} // Add delay here
-          className="ULTIMATE text-[10.5rem] tracking-wider w-90% font-medium text-zinc-950 font-[PlayfairDisplay]"
+          className="ULTIMATE text-[4rem]   sm:text-[10.5rem] sm:tracking-wider sm:w-90%   font-medium text-zinc-950 font-[PlayfairDisplay]"
         >
           ULTIMATE{" "}
         </motion.h1>
-        <p className="text-xs text-zinc-500 pt-16 font-bold leading-[23px] font-[MonaSans]">
+        <p className="text-xs hidden sm:block  text-zinc-500 pt-16 font-bold leading-[23px] font-[MonaSans]">
           Sense of poise, good manners, and a graceful presence.
         </p>
       </section>
 
       {/* Section 3 */}
-      <section className="section-3  select-none flex justify-between gap-4 relative w-full h-[250vh]  rounded-[3rem] border-[0.5px] border-zinc-100 bg-gradient-to-bl from-transparent via-[#f8f8f8] to-[#96f47f] shadow-gray-950">
+      <section className="section-3 relative mt-20 h-[65vh] w-full select-none sm:flex sm:justify-between sm:gap-4 sm:mt-0 sm:relative sm:w-full sm:h-[250vh]                     sm:rounded-[3rem] sm:border-[0.5px] sm:border-zinc-100 sm:bg-gradient-to-bl sm:from-transparent sm:via-[#f8f8f8] sm:to-[#96f47f] sm:shadow-gray-950">
         {/* FASHION Heading */}
 
         <motion.h1
           initial={{ y: "100%", opacity: 0 }}
           animate={{ y: "0%", opacity: 1 }}
           transition={{ duration: 1, ease: "easeOut", delay: 0.8 }}
-          className="fashion  text-[10rem] tracking-tight absolute font-[MonaSans] left-1/2 -translate-x-1/2 -top-8 text-zinc-950"
+          className="fashion  text-[4.5rem]    text-center    -top-32     sm:text-[10rem] sm:tracking-tight absolute sm:font-[MonaSans] left-1/2 -translate-x-1/2 sm:-top-10 sm:text-zinc-950"
           style={{ willChange: "transform" }}
         >
           FASHION
@@ -239,13 +238,13 @@ const Hero = () => {
           initial={{ y: 100, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 1.2, ease: "easeOut", delay: 1.5 }}
-          className="absolute h-[250vh] left-1/2 -translate-x-1/2 z-10 w-[60%] select-none -top-15 scale-[80%]"
+          className="absolute   h-[70vh] w-[70vw]  -top-20 left-1/2 -translate-x-1/2          sm:h-[250vh] sm:left-1/2 sm:-translate-x-1/2 z-8 sm:w-[60%] select-none sm:-top-15 sm:scale-[80%]"
           src="src/assets/Iphone.png"
           alt=""
         />
 
         {/* Floating Quotes */}
-        <div ref={section1Ref} className="w-1/3  h-1/3 ">
+        <div ref={section1Ref} className="w-1/3  hidden sm:block  h-1/3 ">
           <motion.div
             drag
             dragConstraints={section1Ref}
@@ -273,7 +272,7 @@ const Hero = () => {
           </motion.div>
         </div>
 
-        <div ref={section2Ref} className="w-1/3 h-1/3 ">
+        <div ref={section2Ref} className="w-1/3 hidden  sm:block h-1/3 ">
           <motion.div
             drag
             dragConstraints={section2Ref}
@@ -324,16 +323,16 @@ const Hero = () => {
 
         <div className="w-[80vw] h-[40vh] absolute bottom-20 left-1/2 -translate-x-1/2 flex items-center justify-between">
           <motion.img
-            initial={{ opacity: 0,  }}
-            animate={{ opacity: 1,  }}
-            transition={{ duration: 0.7, ease: "easeOut", delay:3.5 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.7, ease: "easeOut", delay: 3.5 }}
             className="h-16 hover:scale-105 transition-transform duration-500 absolute left-0 top-10 z-[1]"
             src="src/assets/app-store.png"
             alt=""
           />
           <motion.img
-            initial={{ opacity: 0,  }}
-            animate={{ opacity: 1,  }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
             transition={{ duration: 0.7, ease: "easeOut", delay: 3.5 }}
             className="w-40 hover:scale-[130%] scale-125 transition-transform duration-500 absolute right-0 top-10 z-[1]"
             src="src/assets/google-play.png"
@@ -375,7 +374,7 @@ const Hero = () => {
               });
             }
           }}
-          className="absolute live z-[100] left-10 bottom-1/2 translate-y-1/2 w-full h-[75vh] flex gap-6 py-4 cursor-grab transition-all select-none duration-initial  overflow-x-scroll scrollbar-hide"
+          className="absolute live z-15 left-1/2 w-full -translate-x-1/2 top-12 h-[45vh]   sm:bottom-120 sm:translate-y-120 sm:w-full sm:h-[75vh] flex gap-2 sm:gap-6 py-4       cursor-grab transition-all select-none duration-initial  overflow-x-scroll scrollbar-hide"
           style={{
             scrollBehavior: "auto",
             scrollSnapType: "x mandatory",
@@ -383,23 +382,37 @@ const Hero = () => {
         >
           {repeatedCards.map((card, idx) => {
             const videoRef = useRef(null);
+            const [active, setActive] = useState(false);
+            const liveNumber = React.useMemo(
+              () => Math.floor(Math.random() * 900 + 100),
+              []
+            );
 
             return (
               <motion.div
                 key={idx}
-                className="group relative min-w-[22rem] h-full bg-cover rounded-4xl shadow-lg flex-shrink-0 flex flex-col transition-transform duration-300 hover:scale-105 hover:shadow-2xl hover:brightness-110"
+                className="group relative h-full w-52 sm:min-w-[22rem]  sm:h-full bg-cover rounded-4xl shadow-lg flex-shrink-0 flex flex-col transition-transform duration-300 hover:scale-105 hover:shadow-2xl hover:brightness-110"
                 style={{ backgroundImage: `url(${card.img})` }}
-                onMouseEnter={() => videoRef.current && videoRef.current.play()}
-                onMouseLeave={() =>
-                  videoRef.current && videoRef.current.pause()
-                }
+                onMouseEnter={() => {
+                  if (videoRef.current) videoRef.current.play();
+                }}
+                onMouseLeave={() => {
+                  setActive(false);
+                  if (videoRef.current) videoRef.current.pause();
+                }}
+                onClick={() => {
+                  setActive(true);
+                  if (videoRef.current) videoRef.current.play();
+                }}
               >
                 {/* Video overlay */}
                 {card.video && (
                   <video
                     ref={videoRef}
                     src={card.video}
-                    className="absolute inset-0 w-full h-full object-cover rounded-4xl z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                    className={`absolute inset-0 w-full h-full object-cover rounded-4xl z-0 transition-opacity duration-300 ${
+                      active ? "opacity-100" : "opacity-0 group-hover:opacity-100"
+                    }`}
                     muted
                     loop
                     preload="none"
@@ -409,9 +422,9 @@ const Hero = () => {
                 )}
                 {/* Top left buttons */}
                 <div className="absolute top-4 left-4 flex gap-2 z-10">
-                  <button className="  px-3 bg-red-500 py-2 rounded-full flex items-center text-xs font-semibold hover:bg-red-300 ">
+                  <button className="px-2 py-1 text-[10px]  sm:px-3 bg-red-500 sm:py-2 rounded-full flex items-center sm:text-xs font-semibold hover:bg-red-300 ">
                     <img
-                      className="h-6 animate-pulse"
+                      className="h-4 animate-pulse"
                       src="src/assets/stream.png"
                       alt=""
                     />
@@ -433,27 +446,27 @@ const Hero = () => {
                         strokeWidth="2"
                       />
                     </svg>
-                    {Math.floor(Math.random() * 900 + 100)}K
+                    {liveNumber}K
                   </button>
                 </div>
-                <div className="absolute w-64 left-2 bottom-6 h-[10vh] flex items-center gap-3 bg-black/20 backdrop-blur-[1px] rounded-full p-2 shadow transition-transform duration-300 hover:scale-105 hover:shadow-2xl hover:brightness-110">
-                  <div className="w-14 h-14 rounded-full  flex items-center justify-center overflow-hidden">
+                <div className="absolute w-48 h-[6vh] sm:w-64 left-2 bottom-6 sm:h-[10vh] flex items-center gap-2 sm:gap-3 bg-black/20 backdrop-blur-[1px] rounded-full p-2 shadow transition-transform duration-300 hover:scale-105 hover:shadow-2xl hover:brightness-110">
+                  <div className="w-10 h-10 rounded-full   sm:w-14 sm:h-14    flex items-center justify-center overflow-hidden">
                     <img
                       src={card.img}
                       alt="Creator"
                       className="w-full h-full rounded-full object-cover object-top"
                     />
                   </div>
-                  <div className="flex flex-col gap-1">
-                    <span className="font-bold font-[MonaSans] text-zinc-100 text-sm">
+                  <div className="flex flex-col">
+                    <span className="font-bold font-[MonaSans] text-zinc-100 text-[10px] sm:text-sm">
                       {card.name}
                     </span>
                     <div className="flex items-center justify-between gap-2">
-                      <p className="text-xs font-[MonaSans] text-zinc-200">
+                      <p className="text-[8px] sm:text-xs font-[MonaSans] text-zinc-200">
                         {card.followers} Follower
                       </p>
                       <span className="p-[3px] rounded-full bg-white"></span>
-                      <span className="text-xs font-[MonaSans] text-[#6cfa7a] font-semibold hover:text-[#90a955] cursor-pointer">
+                      <span className="text-[8px] sm:text-xs font-[MonaSans] text-[#6cfa7a] font-semibold hover:text-[#90a955] cursor-pointer">
                         Follow +
                       </span>
                     </div>

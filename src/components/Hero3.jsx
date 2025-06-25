@@ -13,14 +13,14 @@ const Hero = () => {
     <div className="w-full flex flex-col  select-none py-10 min-h-screen px-6 ">
       {/* Section 1 */}
 
-      <section className="section-3  select-none flex relative  overflow-hidden w-full  justify-between ">
-        <div ref={section1Ref} className=" h-full  overflow-hidden flex items-center justify-center w-1/2">
+      <section className="section-3  h-1/2 select-none  flex-col sm:flex sm:flex-row relative  overflow-hidden w-full  justify-between ">
+        <div ref={section1Ref} className=" sm:h-full  sm:w-1/2 w-full overflow-hidden flex items-center justify-center ">
         <motion.div
             drag
             dragConstraints={section1Ref}
-            className="absolute w-[20vw] scale-75 z-20 bg-white/80 rounded-xl   flex flex-col gap-4 shadow-md p-4 text-zinc-700 text-lg font-semibold "
+            className="absolute sm:w-[20vw] scale-75 z-20 bg-white/80 rounded-xl   flex flex-col gap-4 shadow-md p-4 text-zinc-700 text-lg font-semibold "
             style={{
-              top: "5vh",
+              top: "55vh",
               left: "0",
               zIndex: 20,
             }}
@@ -40,15 +40,15 @@ const Hero = () => {
           </div>
         </div>
 
-        <div className=" h-full flex flex-col gap-[13.5rem] relative justify-between px-10  w-1/2">
+        <div className=" h-full sm:w-1/2 sm:mt-0 mt-10 w-full  flex flex-col gap-[3rem] sm:gap-[13.5rem] relative justify-between sm:justify-between sm:px-10 ">
           <div
             ref={section2Ref}
-            className=" flex justify-end h-1/2 w-full"
+            className=" flex sm:justify-end  h-full  w-full"
           >
             <motion.div
               drag
               dragConstraints={section2Ref}
-              className="absolute w-[20vw] scale-75 z-20 bg-white/80 rounded-xl   flex flex-col gap-4 shadow-md p-4 text-zinc-700 text-lg font-semibold "
+              className="absolute sm:w-[20vw] w-full scale-75 z-20 bg-white/80 rounded-xl   flex flex-col gap-4 shadow-md p-4 text-zinc-700 text-lg font-semibold "
               style={{
                 top: "45vh",
                 right: "15vh",
@@ -60,22 +60,23 @@ const Hero = () => {
                 Beyond aesthetics, fashion has the power to empower individuals.
               </p>
             </motion.div>
-            <div className="h-[35vh] scale-110 mt-10 rounded-3xl overflow-hidden  w-[50%]">
+            <div className="sm:h-[35vh] h-[50vh]  sm:scale-110 sm:mt-10 rounded-3xl overflow-hidden w-full  sm:w-[50%]">
               <img
                 src="https://media.assettype.com/indulgexpress%2Fimport%2F2023%2F8%2F17%2Foriginal%2FFocusonsustainablefashion.jpg?w=768&auto=format%2Ccompress&fit=max"
                 alt="Landscape"
-                className="w-full h-full object-cover "
+                className="w-full h-full sm:object-cover "
               />
             </div>
           </div>
+
           <div
             ref={section3Ref}
-            className=" h-1/2 w-full flex items-end  overflow-hidden "
+            className=" sm:h-1/2 w-full  flex items-end overflow-hidden "
           >
             <motion.div
               drag
               dragConstraints={section3Ref}
-              className="absolute w-[18vw] scale-75 z-20 bg-white/80 rounded-xl   flex flex-col gap-4 shadow-md p-4 text-zinc-700 text-lg font-semibold "
+              className="absolute sm:w-[18vw] w-full scale-75 z-20 bg-white/80 rounded-xl   flex flex-col gap-4 shadow-md p-4 text-zinc-700 text-lg font-semibold "
               style={{
                 bottom: "5vh",
                 right: "5vh",
@@ -87,7 +88,7 @@ const Hero = () => {
                 Fashion is a dynamic reflection of culture and societal trends.
               </p>
             </motion.div>
-            <div className="h-[50vh]  rounded-3xl overflow-hidden  w-[60%]">
+            <div className="sm:h-[50vh] h-[50vh] rounded-3xl overflow-hidden  sm:w-[60%]">
               <img
                 src="https://audiophile-ecommerce-mj.netlify.app/img/product-images-xx99-mark2-2-desktop.jpg"
                 alt="Landscape"
@@ -98,7 +99,7 @@ const Hero = () => {
         </div>
       </section>
 
-      <section className="section-3 h-screen items-start py-4 mt-6  select-none flex relative  overflow-hidden w-full gap-10 ">
+      <section className="section-3 hidden  sm:h-screen items-start h-40 py-4 mt-6  select-none sm:flex relative  overflow-hidden w-full gap-10 ">
         <div className="flex  h-full gap-10 w-1/2 ">
           <div
             ref={section5Ref}
