@@ -1,0 +1,25 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "title": "Red T-shirt",
+      "price": 10,
+      "image": "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcQK3aQw5MLY4_1bmUzmcaKlzSp3ZiTJ2th7_JNnZqUEgOI5Df7_lyirfLlA4WP2jwvKZPfy8_lc-M3ptb1DXxjnfd4t_g1uSNxz0tHpuV0bnbFKEzunfotf4w",
+      "size": ["S", "M", "L"]
+    },
+    {
+      "id": 2,
+      "title": "Blue Jeans",
+      "price": 20,
+      "image": "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQWcnwAUZ0vDMx2UpCunZkindVZzTCJB4A_SOtH9AguygmCTYjW2r3eB1w3R3q5t5_dANki0UcRldwZhIDS8-tiisQQfKL19BZqr7SCEZA",
+      "size": ["S", "M", "L"]
+    },
+    {
+      "id": 3,
+      "title": "Black Hoodie",
+      "price": 30,
+      "image": "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcQaA39GAPKLSy61zz5-1YfT7sB4sMTZMrANxpBMKssL6Rrq6hjxxWw2hOPZHJqWqCHJNsesCjaUhEegSF1_lCci2L41ar6lGMHgZAyLHVwEjs5T8-uE5jnT",
+      "size": ["S", "M", "L"]
+    }
+  ]
+}

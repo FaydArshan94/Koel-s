@@ -1,21 +1,18 @@
 @import "tailwindcss";
 
 @font-face {
-    font-family: MonaSans;
-    src: url("components/Mona_Sans/MonaSans-VariableFont_wdth,wght.ttf");
+  font-family: 'MonaSans';
+  src: url('/src/assets/Mona_Sans/MonaSans-VariableFont_wdth,wght.ttf') format('truetype');
 }
 @font-face {
-    font-family: PlayfairDisplay;
-    src: url("src/components/PlayfairDisplay-Regular.ttf");
+  font-family: 'ImpressumStdRoman';
+  src: url('/src/assets/Impressum Std Roman.otf') format('opentype');
+}
+@font-face {
+  font-family: 'Baskvill';
+  src: url('/src/assets/BASKVILL.TTF') format('truetype');
 }
 
 .live::-webkit-scrollbar{
     display: none;
-}
-
-
-
-@font-face {
-    font-family: Baskville;
-    src: url("src\components\BASKVILL.TTF");
 }

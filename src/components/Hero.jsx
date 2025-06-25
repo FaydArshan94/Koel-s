@@ -76,7 +76,7 @@ const liveCards = [
 
 const repeatedCards = [...liveCards, ...liveCards, ...liveCards]; // Triplet
 
-const Hero = () => {
+const Hero = ({ shouldAnimate }) => {
   const containerRef = useRef();
   const section1Ref = useRef();
   const section2Ref = useRef(); // Add this ref
@@ -112,18 +112,22 @@ const Hero = () => {
   // Typing effect for the intro paragraph
   const fullText =
     "Koel's Fashion is a live or niche event, brand or collection that has emerged after recent trends.";
-  const [typedText, setTypedText] = useState("");
+  const [typedText, setTypedText] = useState(shouldAnimate ? "" : fullText);
 
   useEffect(() => {
+    if (!shouldAnimate) {
+      setTypedText(fullText);
+      return;
+    }
     let i = 0;
     let raf;
-    let startTimeout = setTimeout(type, 0); // Small delay before typing starts
+    let startTimeout = setTimeout(type, 0);
 
     function type() {
-      setTypedText(fullText.slice(0, i + 69));
+      setTypedText(fullText.slice(0, i + 1));
       i++;
       if (i < fullText.length) {
-        raf = setTimeout(type, 60); // Smooth, not too fast
+        raf = setTimeout(type, 60);
       }
     }
 
@@ -131,14 +135,14 @@ const Hero = () => {
       clearTimeout(startTimeout);
       clearTimeout(raf);
     };
-  }, []);
+  }, [shouldAnimate, fullText]);
 
   return (
     <div className="w-full flex flex-col items-center  select-none sm:py-10 py-0 min-h-screen">
       {/* Section 1 */}
       <section className="section-1 flex flex-col  gap-0  md:flex-row items-center md:items-center sm:justify-between  sm:w-full md:px-6   md:gap-0 h-auto md:h-[20vh]">
         <motion.p
-          initial={{ opacity: 0 }}
+          initial={shouldAnimate ? { opacity: 0 } : false}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
           className="w-full md:w-[17%] text-left hidden sm:block text-xs sm:text-sm text-zinc-400 font-semiboldbold"
@@ -149,14 +153,14 @@ const Hero = () => {
         <div className="relative  hidden  line w-full md:w-[28%] sm:h-16 md:h-32 sm:flex items-center justify-center md:mt-0">
           <div className="flex items-center justify-between h-full w-full">
             <motion.div
-              initial={{ scaleX: 0 }}
+              initial={shouldAnimate ? { scaleX: 0 } : false}
               animate={{ scaleX: 1 }}
               transition={{ duration: 1, ease: "easeOut", delay: 0.3 }}
               className="absolute top-1/2 left-0 w-[38%] border-t border-zinc-300"
               style={{ originX: 0 }}
             ></motion.div>
             <motion.div
-              initial={{ scaleX: 0 }}
+              initial={shouldAnimate ? { scaleX: 0 } : false}
               animate={{ scaleX: 1 }}
               transition={{ duration: 1, ease: "easeOut", delay: 0.3 }}
               className="absolute top-1/2 right-0 w-[38%] border-t border-zinc-300"
@@ -165,7 +169,7 @@ const Hero = () => {
           </div>
           <div className="flex items-center absolute justify-center gap-2 md:gap-[1.1rem] z-10 left-1/2 -translate-x-1/2">
             <motion.div
-              initial={{ y: "-200vh" }}
+              initial={shouldAnimate ? { y: "-200vh" } : false}
               animate={{ y: "0%", opacity: 1 }}
               transition={{ duration: 1, ease: "easeOut", delay: 0 }}
               whileHover={{ scale: 1.1 }}
@@ -173,7 +177,7 @@ const Hero = () => {
               className="w-8 h-8 md:w-10 md:h-10 hover:scale-110 transition-transform rounded-full border-1 border-zinc-300 bg-white z-10"
             ></motion.div>
             <motion.div
-              initial={{ y: "-200vh" }}
+              initial={shouldAnimate ? { y: "-200vh" } : false}
               animate={{ y: "0%", opacity: 1 }}
               transition={{ duration: 1, ease: "easeOut", delay: 0.1 }}
               whileHover={{ scale: 1.1 }}
@@ -181,7 +185,7 @@ const Hero = () => {
               className="w-8 h-8 md:w-10 md:h-10 hover:scale-110 transition-transform rounded-full border-1 border-zinc-300 bg-white z-20 -ml-4 md:-ml-8"
             ></motion.div>
             <motion.div
-              initial={{ y: "-200vh" }}
+              initial={shouldAnimate ? { y: "-200vh" } : false}
               animate={{ y: "0%", opacity: 1 }}
               transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
               whileHover={{ scale: 1.1 }}
@@ -192,7 +196,7 @@ const Hero = () => {
         </div>
         <div className="the relative  overflow-hidden  md:h-[10rem] items-center  flex sm:items-end sm:mt-4 md:mt-0">
           <motion.h1
-            initial={{ y: "100%", opacity: 0 }}
+            initial={shouldAnimate ? { y: "100%", opacity: 0 } : false}
             animate={{ y: "0%", opacity: 1 }}
             transition={{ duration: 1, ease: "easeOut", delay: 0 }}
             className="text-[4.5rem] sm:text-[4rem] md:text-[6rem] lg:text-[10rem] text-zinc-900 tracking-tighter font-[MonaSans] leading-none"
@@ -203,10 +207,10 @@ const Hero = () => {
         </div>
       </section>
 
-      {/* section */}
+      {/* Section 2 */}
       <section className="section-2 -top-5 h-24 origin-top relative sm:flex sm:items-center sm:justify-around sm:px-4 sm:gap-10 sm:pl-40 p-0 sm:h-40 ">
         <motion.h1
-          initial={{ y: "100%", opacity: 0 }}
+          initial={shouldAnimate ? { y: "100%", opacity: 0 } : false}
           animate={{ y: "0%", opacity: 1 }}
           transition={{ duration: 1, ease: "easeOut", delay: 0.2 }} // Add delay here
           className="ULTIMATE text-[4rem]   sm:text-[10.5rem] sm:tracking-wider sm:w-90%   font-medium text-zinc-950 font-[PlayfairDisplay]"
@@ -223,7 +227,7 @@ const Hero = () => {
         {/* FASHION Heading */}
 
         <motion.h1
-          initial={{ y: "100%", opacity: 0 }}
+          initial={shouldAnimate ? { y: "100%", opacity: 0 } : false}
           animate={{ y: "0%", opacity: 1 }}
           transition={{ duration: 1, ease: "easeOut", delay: 0.8 }}
           className="fashion  text-[4.5rem]    text-center    -top-32     sm:text-[10rem] sm:tracking-tight absolute sm:font-[MonaSans] left-1/2 -translate-x-1/2 sm:-top-10 sm:text-zinc-950"
@@ -235,7 +239,7 @@ const Hero = () => {
         {/* iPhone Image */}
 
         <motion.img
-          initial={{ y: 100, opacity: 0 }}
+          initial={shouldAnimate ? { y: 100, opacity: 0 } : false}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 1.2, ease: "easeOut", delay: 1.5 }}
           className="absolute   h-[70vh] w-[70vw]  -top-20 left-1/2 -translate-x-1/2          sm:h-[250vh] sm:left-1/2 sm:-translate-x-1/2 z-8 sm:w-[60%] select-none sm:-top-15 sm:scale-[80%]"

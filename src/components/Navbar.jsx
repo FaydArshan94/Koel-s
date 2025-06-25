@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { NavLink } from "react-router-dom"; // <-- Add this
 
 const navLinks = [
-  { href: "#About", label: "About" },
-  { href: "#Feature", label: "Feature" },
-  { href: "#Blog", label: "Blog" },
-  { href: "#menu", label: "menu" },
+  { to: "/products", label: "Products" },
+  { to: "/cart", label: "Cart" },
+  { to: "/about", label: "About" },
+  { to: "/blog", label: "Blog" },
 ];
 
 const Navbar = () => {
@@ -30,21 +31,22 @@ const Navbar = () => {
       transition={{ duration: 0.7, ease: "easeOut" }}
       className="flex justify-between items-center select-none px-6 md:px-10 py-4  bg-white relative"
     >
-      <motion.div
-        initial={{ x: -40, opacity: 0 }}
-        animate={{ x: 0, opacity: 1 }}
-        transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
-        className="text-2xl text-gray-900 font-[MonaSans]"
-      >
-        Koel's
-      </motion.div>
+      <NavLink to="/">
+        <motion.div
+          initial={{ x: -40, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
+          className="text-2xl text-gray-900 font-[MonaSans]"
+        >
+          Koel's
+        </motion.div>
+      </NavLink>
 
       {/* Desktop Nav */}
       <nav className="hidden md:flex gap-10 lg:gap-14 py-4 px-5 text-gray-700 font-medium">
-        {navLinks.slice(0, 3).map((link, idx) => (
-          <motion.a
+        {navLinks.map((link, idx) => (
+          <motion.div
             key={link.label}
-            href={link.href}
             initial={{ y: -20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{
@@ -52,10 +54,19 @@ const Navbar = () => {
               delay: 0.3 + idx * 0.15,
               ease: "easeOut",
             }}
-            className="hover:text-black text-sm"
           >
-            {link.label}
-          </motion.a>
+            <NavLink
+              to={link.to}
+              className={({ isActive }) =>
+                `hover:text-black text-sm ${
+                  isActive ? "font-bold text-black" : ""
+                }`
+              }
+              onClick={() => setOpen(false)}
+            >
+              {link.label}
+            </NavLink>
+          </motion.div>
         ))}
         <motion.div
           initial={{ y: -20, opacity: 0 }}
@@ -63,14 +74,7 @@ const Navbar = () => {
           transition={{ duration: 0.5, delay: 0.75, ease: "easeOut" }}
           className="flex items-center gap-3"
         >
-          <a href="#menu" className="hover:text-black text-sm capitalize">
-            menu
-          </a>
-          <div className="flex relative flex-col justify-between w-4 h-[8px] top-1 cursor-pointer">
-            <span className="h-0.5 w-[8px] absolute right-0 -top-[6px] bg-gray-700 rounded"></span>
-            <span className="h-0.5 bg-gray-700 rounded"></span>
-            <span className="h-0.5 w-[12px] bg-gray-700 rounded"></span>
-          </div>
+          {/* You can add extra menu items here if needed */}
         </motion.div>
       </nav>
       {/* Mobile Hamburger */}
@@ -105,17 +109,24 @@ const Navbar = () => {
             className="fixed top-0 right-0 w-full h-full  bg-white shadow-lg flex flex-col items-start gap-8 px-8 py-20 z-20 md:hidden overflow-y-auto"
           >
             {navLinks.map((link, idx) => (
-              <motion.a
+              <motion.div
                 key={link.label}
-                href={link.href}
                 initial={{ x: 40, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
                 transition={{ duration: 0.4, delay: 0.1 + idx * 0.1 }}
-                className="text-lg font-semibold text-gray-800 hover:text-black"
-                onClick={() => setOpen(false)}
               >
-                {link.label}
-              </motion.a>
+                <NavLink
+                  to={link.to}
+                  className={({ isActive }) =>
+                    `text-lg font-semibold text-gray-800 hover:text-black ${
+                      isActive ? "font-bold text-black" : ""
+                    }`
+                  }
+                  onClick={() => setOpen(false)}
+                >
+                  {link.label}
+                </NavLink>
+              </motion.div>
             ))}
           </motion.nav>
         )}

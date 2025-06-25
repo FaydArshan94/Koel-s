@@ -30,7 +30,7 @@ const Hero = () => {
         </div>
       </section>
 
-      <section className="section-3 overflow-hidden sm:mt-24  mt-10 w-full select-none sm:flex relative sm:w-full sm:h-[160vh] sm:justify-between rounded-[3rem] sm:bg-gradient-to-r sm:from-[#D4FFEE] sm:to-transparent">
+      <section className="section-3  sm:mt-24  mt-10 w-full select-none sm:flex relative sm:w-full sm:h-[160vh] sm:justify-between rounded-[3rem] sm:bg-gradient-to-r sm:from-[#D4FFEE] sm:to-transparent">
         <div className=" h-full sm:w-[40vw] w-full px-5">
           <div className="flex flex-col gap-3  sm:items-start items-center sm:justify-start h-full py-4  sm:py-8">
             <h4 className="sm:text-md text-xl text-center font-semibold sm:text-zinc-700 text-zinc-800 ">
@@ -106,7 +106,7 @@ const Hero = () => {
           </div>
         </div>
 
-        <div className=" absolute hidden sm:block sm:-top-20 top-0 left-1/2 -translate-x-1/2 sm:h-[50%]  ">
+        <div className=" absolute hidden sm:block sm:-top-0 top-0 left-1/2 -translate-x-1/2 sm:h-[50%]  ">
           <img
             className=" z-10 w-full h-full scale-150 select-none"
             src="src/assets/Iphone.png"
