@@ -4,6 +4,6 @@ import tailwindcss from '@tailwindcss/vite'
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: '/', // 👈 Add this line
+  base: '/Koel-s/', // 👈 Add this line
   plugins: [react(), tailwindcss()],
 })

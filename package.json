@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://FaydArshan94.github.io/Koel-s",
+  "homepage": "https://faydarshan94.github.io/Koel-s/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
