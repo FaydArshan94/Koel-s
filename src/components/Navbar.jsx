@@ -1,16 +1,22 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { NavLink } from "react-router-dom"; // <-- Add this
+import { useSelector } from "react-redux";
 
 const navLinks = [
   { to: "/products", label: "Products" },
   { to: "/cart", label: "Cart" },
   { to: "/about", label: "About" },
-  { to: "/blog", label: "Blog" },
 ];
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
+
+  const currentUser = useSelector((state) => state.user.currentUser);
+
+  useEffect(() => {
+    console.log("Redux currentUser:", currentUser);
+  }, [currentUser]);
 
   // Disable body scroll when menu is open
   useEffect(() => {
@@ -75,6 +81,18 @@ const Navbar = () => {
           className="flex items-center gap-3"
         >
           {/* You can add extra menu items here if needed */}
+
+          {!currentUser ? (
+            <>
+              <NavLink to="/signup" className="text-blue-600 hover:underline">
+                Sign Up
+              </NavLink>
+            </>
+          ) : (
+            <>
+              <span className="text-green-600">Hi, {currentUser.name}</span>
+            </>
+          )}
         </motion.div>
       </nav>
       {/* Mobile Hamburger */}

@@ -15,3 +15,5 @@ export const addProduct = async (product) => {
   const response = await axios.post("/products", product);
   return response.data;
 };
+
+

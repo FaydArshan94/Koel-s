@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getSingleProduct } from "../api/productsApi";
-import { fetchAndAddToCart } from "../store/features/CartActions";
+// import { fetchAndAddToCart } from "../store/features/CartActions";
 
 // const dummyProduct = {
 //   id: 1,
@@ -69,7 +69,8 @@ const ProductDetails = () => {
               </div>
             </div>
             <button
-                onClick={()=> dispatch(fetchAndAddToCart(product.id))}
+            type="button"
+                // onClick={()=> dispatch(fetchAndAddToCart(product.id))}
               className="mt-6 bg-gradient-to-r from-black to-gray-800 text-white px-8 py-3 rounded-lg shadow hover:from-gray-900 hover:to-black transition font-semibold text-lg"
               >
                 
