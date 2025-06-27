@@ -1,52 +1,40 @@
-import React from "react";
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
-import { registeruser } from "../store/users/userSlice";
-import { createuser } from "../api/userApi";
-import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { loginUser } from "../store/users/userActions";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
-const Signup = () => {
+const Login = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [error, setError] = useState("");
+
   const onSubmit = async (data) => {
+    setError(""); // reset error
+
     try {
-      const newUser = await createuser(data);
-      console.log(newUser);
-      
-      dispatch(registeruser(newUser));
-      alert("Signup successful!");
-      navigate("/login")
-    } catch (error) {
-      alert("Signup failed");
-      console.log(err);
+      await dispatch(loginUser(data));
+      navigate("/"); // login success, go to home
+    } catch (err) {
+      setError(err.message); // show error in UI
     }
   };
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-50">
       <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
-        <h2 className="text-2xl font-bold mb-6 text-center">Sign Up</h2>
+        <h2 className="text-2xl font-bold mb-6 text-center">Login</h2>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="mb-4">
-            <label className="block mb-1 font-medium">Name</label>
-            <input
-              type="text"
-              {...register("name", { required: "Name is required" })}
-              className="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
-              placeholder="Enter your name"
-            />
-            {errors.name && (
-              <span className="text-red-500 text-sm">
-                {errors.name.message}
-              </span>
-            )}
-          </div>
+          {error && (
+            <div className="mb-4 text-red-600 text-center font-semibold">
+              {error}
+            </div>
+          )}
           <div className="mb-4">
             <label className="block mb-1 font-medium">Email</label>
             <input
@@ -79,16 +67,16 @@ const Signup = () => {
             type="submit"
             className="w-full bg-blue-500 text-white py-2 rounded font-semibold hover:bg-blue-600 transition"
           >
-            Sign Up
+            Login
           </button>
         </form>
         <p className="text-center text-gray-500 mt-4 text-sm">
-          Already have an account?{" "}
-          <Link to="/login" className="text-blue-600 cursor-pointer">Login</Link>
+          Don't have an account?{" "}
+          <span className="text-blue-600 cursor-pointer">Sign up</span>
         </p>
       </div>
     </div>
   );
 };
 
-export default Signup;
+export default Login;

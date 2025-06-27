@@ -1,7 +1,7 @@
-import axios from "axios";
+import axios from "axios"; // ✅ npm package se import karo
 
 const axiosInstance = axios.create({
-  baseURL: "http://localhost:3001",
+  baseURL: "http://localhost:3000/",
   headers: {
     "Content-Type": "application/json",
   },

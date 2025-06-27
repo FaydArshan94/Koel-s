@@ -40,18 +40,40 @@
       "name": "dada",
       "email": "dada@d.com",
       "password": "1234",
+      "isAdmin ": true,
       "cart": [
         {
           "productId": "1",
-          "qty": 20
+          "qty": 2
         },
         {
           "productId": "2",
-          "qty": 7
+          "qty": 2
         },
         {
           "productId": "3",
-          "qty": 5
+          "qty": 2
+        }
+      ]
+    },
+    {
+      "id": "TsWrWuhlnU6i6nSnu9tct",
+      "name": "panko",
+      "email": "panko@p.com",
+      "password": "1234",
+      "isAdmin": false,
+      "cart": [
+        {
+          "productId": "1",
+          "qty": 2
+        },
+        {
+          "productId": "2",
+          "qty": 2
+        },
+        {
+          "productId": "3",
+          "qty": 2
         }
       ]
     }

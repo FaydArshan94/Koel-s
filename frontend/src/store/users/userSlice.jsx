@@ -19,9 +19,9 @@ const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    registeruser: (state, action) => {
-      state.users.push(action.payload);
-    },
+    // registeruser: (state, action) => {
+    //   state.users.push(action.payload);
+    // },
     loginuser: (state, action) => {
       state.currentUser = action.payload;
       localStorage.setItem("currentUser", JSON.stringify(action.payload));
@@ -34,6 +34,13 @@ const userSlice = createSlice({
       const updatedUser = action.payload;
       state.currentUser = updatedUser; // ✅ this was missing
       localStorage.setItem("currentUser", JSON.stringify(updatedUser));
+    },
+    clearCart: (state) => {
+      if (state.currentUser) {
+        const updatedUser = { ...state.currentUser, cart: [] };
+        state.currentUser = updatedUser;
+        localStorage.setItem("currentUser", JSON.stringify(updatedUser));
+      }
     },
   },
 });

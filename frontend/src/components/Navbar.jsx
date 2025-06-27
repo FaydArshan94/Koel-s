@@ -15,7 +15,6 @@ const Navbar = () => {
   const currentUser = useSelector((state) => state.user.currentUser);
 
   useEffect(() => {
-    console.log("Redux currentUser:", currentUser);
   }, [currentUser]);
 
   // Disable body scroll when menu is open
@@ -146,6 +145,23 @@ const Navbar = () => {
                 </NavLink>
               </motion.div>
             ))}
+
+            {/* Add this below navLinks in mobile menu */}
+            <div className="mt-4">
+              {!currentUser ? (
+                <NavLink
+                  to="/signup"
+                  className="text-blue-600 hover:underline text-lg font-semibold"
+                  onClick={() => setOpen(false)}
+                >
+                  Sign Up
+                </NavLink>
+              ) : (
+                <span className="text-green-600 text-lg font-semibold">
+                  Hi, {currentUser.name}
+                </span>
+              )}
+            </div>
           </motion.nav>
         )}
       </AnimatePresence>
