@@ -2,34 +2,52 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getSingleProduct } from "../api/productsApi";
-// import { fetchAndAddToCart } from "../store/features/CartActions";
-
-// const dummyProduct = {
-//   id: 1,
-//   title: "Classic White T-Shirt",
-//   description:
-//     "A timeless classic. This white t-shirt is made from 100% organic cotton and fits perfectly for any occasion.",
-//   price: 499,
-//   image:
-//     "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=400&q=80",
-//   rating: 4.5,
-//   reviews: 23,
-//   sizes: ["S", "M", "L", "XL"],
-//   inStock: true,
-// };
+import { updateuserCart } from "../store/users/userSlice";
+import { updateuser } from "../api/userApi";
 
 const ProductDetails = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
-
+  const currentUser = useSelector((state) => state.user.currentUser);
+  const [selectedSize, setSelectedSize] = useState("");
   const [product, setProduct] = useState(null);
 
   useEffect(() => {
-    getSingleProduct
-    (id)
+    getSingleProduct(id)
       .then((data) => setProduct(data))
       .catch((err) => console.error("Product fetch error:", err));
   }, [id]);
+
+  const addtoCart = async () => {
+    if (!selectedSize) {
+      alert("Please select a size");
+      return;
+    }
+
+    try {
+      const updatedCart = [...(currentUser.cart || [])];
+      const existingIndex = updatedCart.findIndex(
+       (i) => i.productId === product.id && i.size === selectedSize
+      );
+
+      if (existingIndex !== -1) {
+        updatedCart[existingIndex] = {
+          ...updatedCart[existingIndex],
+          qty: updatedCart[existingIndex].qty + 1,
+        };
+      } else {
+        updatedCart.push({ productId: product.id, size :selectedSize, qty: 1 });
+      }
+
+      const updatedUser = { ...currentUser, cart: updatedCart };
+
+      const response = await updateuser(currentUser.id, updatedUser);
+      dispatch(updateuserCart(response)); // ✅ use local updated user
+      console.log("Product added to cart!");
+    } catch (error) {
+      console.error("Cart update failed", error);
+    }
+  };
 
   return (
     <div className="min-h-screen py-10">
@@ -42,7 +60,9 @@ const ProductDetails = () => {
           />
           <div className="flex-1 p-8 flex flex-col justify-between">
             <div>
-              <h1 className="text-3xl font-extrabold mb-3 text-gray-900">{product.title}</h1>
+              <h1 className="text-3xl font-extrabold mb-3 text-gray-900">
+                {product.title}
+              </h1>
               <p className="text-gray-600 mb-6">{product.description}</p>
               <div className="flex items-center gap-2 mb-4">
                 <span className="text-yellow-400 text-2xl">★</span>
@@ -61,7 +81,13 @@ const ProductDetails = () => {
                 {product.size.map((size) => (
                   <span
                     key={size}
-                    className="inline-block border border-gray-300 px-3 py-1 rounded-full mx-1 text-sm font-medium bg-gray-100 hover:bg-black hover:text-white transition-colors cursor-pointer"
+                    onClick={() => setSelectedSize(size)}
+                    className={`inline-block border border-gray-300 px-3 py-1 rounded-full mx-1 text-sm font-medium cursor-pointer transition-colors
+                      ${selectedSize === size
+                        ? "bg-black text-white border-black scale-110 shadow"
+                        : "bg-gray-100 hover:bg-black hover:text-white"}
+                    `}
+                    style={{ transition: "all 0.2s" }}
                   >
                     {size}
                   </span>
@@ -69,16 +95,17 @@ const ProductDetails = () => {
               </div>
             </div>
             <button
-            type="button"
-                // onClick={()=> dispatch(fetchAndAddToCart(product.id))}
+              type="button"
+              onClick={addtoCart}
               className="mt-6 bg-gradient-to-r from-black to-gray-800 text-white px-8 py-3 rounded-lg shadow hover:from-gray-900 hover:to-black transition font-semibold text-lg"
-              >
-                
-                Add to Cart
-              </button>
-            </div>
+            >
+              Add to Cart
+            </button>
+
+            
           </div>
-        )}
+        </div>
+      )}
     </div>
   );
 };

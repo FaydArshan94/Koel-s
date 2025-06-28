@@ -124,7 +124,7 @@ const Hero = ({ shouldAnimate }) => {
     let startTimeout = setTimeout(type, 0);
 
     function type() {
-      setTypedText(fullText.slice(0, i + 1));
+      setTypedText(fullText.slice(0, i + 60));
       i++;
       if (i < fullText.length) {
         raf = setTimeout(type, 60);
