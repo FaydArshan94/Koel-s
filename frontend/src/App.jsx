@@ -9,6 +9,7 @@ import { useLocation } from "react-router-dom";
 import NProgress from "nprogress";
 import "nprogress/nprogress.css";
 import "./styles/loader.css";
+import { ToastContainer } from "react-toastify";
 
 function App() {
 
@@ -39,6 +40,7 @@ function App() {
     <div className="font-sans overflow-hidden">
       <Navbar />
       <MainRoutes />
+      <ToastContainer/>
       {/* <TestButton /> */}
 
 

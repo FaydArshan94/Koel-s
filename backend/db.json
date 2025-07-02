@@ -1,10 +1,36 @@
 {
   "products": [
     {
-      "id": "0106",
-      "title": "coffee",
-      "price": "34",
-      "image": "https://images.unsplash.com/photo-1734012755159-0606af9bc1c8?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "id": "a69a",
+      "title": "Men Typographic Print Hoodie",
+      "price": "648",
+      "image": "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcStcMMN5j6DXaTJNmw8sw8WQ2Cfj9_lcMMYxjmcY5hblZkbE2UWdyt8jVub2RiINgv0_BB7sO7OxnFMQIaqCJPP80vTIBDoMJgksyRq1qE",
+      "size": [
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ]
+    },
+    {
+      "id": "2e85",
+      "title": "Allen Solly Men's Cotton Regular Fit Polo T-Shirt",
+      "price": "699",
+      "image": "https://m.media-amazon.com/images/I/71eUwDk8z+L._SX569_.jpg",
+      "size": [
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ]
+    },
+    {
+      "id": "bdeb",
+      "title": "Fastrack Analog Brown Dial Men's Watch-FV30026QM01",
+      "price": "1994",
+      "image": "https://m.media-amazon.com/images/I/71bhAaayrAL._SX679_.jpg",
       "size": [
         "S",
         "M",
@@ -27,11 +53,78 @@
     {
       "image": "https://preview.redd.it/a-photo-of-my-dog-panko-every-day-v0-h8kp3tpjg8ta1.jpg?width=640&crop=smart&auto=webp&s=a2d4e06be8e7707b43b56f134bef6d1e4331453d",
       "id": "TsWrWuhlnU6i6nSnu9tct",
-      "name": "panko",
+      "name": "PANKI",
       "email": "panko@p.com",
       "password": "1234",
       "isAdmin": false,
       "cart": []
+    }
+  ],
+  "orders": [
+    {
+      "id": "d1d2",
+      "userId": "TsWrWuhlnU6i6nSnu9tct",
+      "items": [
+        {
+          "productId": "a69a",
+          "title": "Men Typographic Print Hoodie",
+          "price": "648",
+          "qty": 1,
+          "image": "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcStcMMN5j6DXaTJNmw8sw8WQ2Cfj9_lcMMYxjmcY5hblZkbE2UWdyt8jVub2RiINgv0_BB7sO7OxnFMQIaqCJPP80vTIBDoMJgksyRq1qE",
+          "status": "Cancelled"
+        },
+        {
+          "productId": "2e85",
+          "title": "Allen Solly Men's Cotton Regular Fit Polo T-Shirt",
+          "price": "699",
+          "qty": 1,
+          "image": "https://m.media-amazon.com/images/I/71eUwDk8z+L._SX569_.jpg",
+          "status": "Cancelled"
+        }
+      ],
+      "totalAmount": 1347,
+      "status": "Cancelled",
+      "date": "2025-07-01T10:51:35.044Z"
+    },
+    {
+      "id": "8072",
+      "userId": "TsWrWuhlnU6i6nSnu9tct",
+      "items": [
+        {
+          "productId": "bdeb",
+          "title": "Fastrack Analog Brown Dial Men's Watch-FV30026QM01",
+          "price": "1994",
+          "qty": 1,
+          "image": "https://m.media-amazon.com/images/I/71bhAaayrAL._SX679_.jpg"
+        },
+        {
+          "productId": "2e85",
+          "title": "Allen Solly Men's Cotton Regular Fit Polo T-Shirt",
+          "price": "699",
+          "qty": 1,
+          "image": "https://m.media-amazon.com/images/I/71eUwDk8z+L._SX569_.jpg"
+        }
+      ],
+      "totalAmount": 2693,
+      "status": "Delivered",
+      "date": "2025-07-01T11:13:09.467Z",
+      "deliveredAt": "2025-07-02T04:37:15.067Z"
+    },
+    {
+      "id": "d205",
+      "userId": "TsWrWuhlnU6i6nSnu9tct",
+      "items": [
+        {
+          "productId": "2e85",
+          "title": "Allen Solly Men's Cotton Regular Fit Polo T-Shirt",
+          "price": "699",
+          "qty": 2,
+          "image": "https://m.media-amazon.com/images/I/71eUwDk8z+L._SX569_.jpg"
+        }
+      ],
+      "totalAmount": 1398,
+      "status": "Cancelled",
+      "date": "2025-07-02T04:36:43.219Z"
     }
   ]
 }

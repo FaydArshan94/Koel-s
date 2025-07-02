@@ -4,6 +4,7 @@ import { updateUserCart } from "../store/users/userActions";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getAllProducts } from "../api/productsApi";
+import axiosInstance from "../api/axios";
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -19,12 +20,11 @@ const Cart = () => {
   //   }
   // }, [products]);
 
-
-//   useEffect(() => {
-//   if (!products.length) {
-//     dispatch(getAllProducts()); // ensure fresh data
-//   }
-// }, []);
+  //   useEffect(() => {
+  //   if (!products.length) {
+  //     dispatch(getAllProducts()); // ensure fresh data
+  //   }
+  // }, []);
 
   const syncCartToBackend = async (updatedCart) => {
     const updatedUser = { ...currentUser, cart: updatedCart };
@@ -41,7 +41,8 @@ const Cart = () => {
   };
 
   const handleQtyChange = (productId, size, type) => {
-    const updatedCart = [...cartItems];
+    const updatedCart = cartItems.map((item) => ({ ...item })); // ✅ deep copy
+
     const index = updatedCart.findIndex(
       (item) => item.productId === productId && item.size === size
     );
@@ -63,7 +64,42 @@ const Cart = () => {
     }
   };
 
-  // if (loading) return <p className="text-center mt-20">No items in cart</p>;
+  
+
+
+
+const handlePlaceOrder = async () => {
+  const orderItems = cartItems.map(item => {
+    const product = products.find(p => p.id === item.productId);
+    return {
+      productId: item.productId,
+      title: product?.title,
+      price: product?.price,
+      qty: item.qty,
+      size: item.size,
+      image: product?.image
+    };
+  });
+
+  const order = {
+    userId: currentUser.id,
+    items: orderItems,
+    totalAmount: orderItems.reduce((sum, i) => sum + i.qty * i.price, 0),
+    status: "Pending",
+    date: new Date().toISOString()
+  };
+
+  try {
+    await axiosInstance.post("/orders", order);
+    await syncCartToBackend([]); // clear cart
+    alert("Order placed successfully!");
+  } catch (error) {
+    console.error("Order placement failed", error);
+  }
+};
+
+
+
 
   return (
     <div className="p-6">
@@ -132,9 +168,7 @@ const Cart = () => {
                 </div>
 
                 <button
-                  onClick={() =>
-                    handleQtyChange(product.id, size, "remove")
-                  }
+                  onClick={() => handleQtyChange(product.id, size, "remove")}
                   className="text-red-600 font-medium hover:text-red-800 transition"
                 >
                   ❌ Remove
@@ -144,21 +178,32 @@ const Cart = () => {
           })}
 
           {/* Totals */}
-          <div className="flex flex-col sm:flex-row justify-end items-end gap-2 mt-8">
-            <div className="bg-gray-100 rounded px-4 py-2 text-lg font-medium text-gray-700 shadow">
-              Total Items:{" "}
-              <span className="font-bold text-black">
-                {cartItems.reduce((sum, item) => sum + item.qty, 0)}
-              </span>
-            </div>
-            <div className="bg-green-100 rounded px-4 py-2 text-lg font-semibold text-green-800 shadow">
-              Total: ₹
-              <span className="font-bold">
-                {cartItems.reduce((sum, item) => {
-                  const product = products.find((p) => p.id === item.productId);
-                  return sum + (product ? product.price * item.qty : 0);
-                }, 0)}
-              </span>
+          <div className="w-full flex items-center justify-between  ">
+            <button
+              className=" bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+              onClick={handlePlaceOrder}
+            >
+              Place Order
+            </button>
+
+            <div className="flex flex-col  sm:flex-row justify-end items-end gap-2 ">
+              <div className="bg-gray-100 rounded px-4 py-2 text-lg font-medium text-gray-700 shadow">
+                Total Items:{" "}
+                <span className="font-bold text-black">
+                  {cartItems.reduce((sum, item) => sum + item.qty, 0)}
+                </span>
+              </div>
+              <div className="bg-green-100 rounded px-4 py-2 text-lg font-semibold text-green-800 shadow">
+                Total: ₹
+                <span className="font-bold">
+                  {cartItems.reduce((sum, item) => {
+                    const product = products.find(
+                      (p) => p.id === item.productId
+                    );
+                    return sum + (product ? product.price * item.qty : 0);
+                  }, 0)}
+                </span>
+              </div>
             </div>
           </div>
         </div>

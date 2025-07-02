@@ -12,6 +12,9 @@ import PublicRoute from "../components/PublicRoute";
 import AdminRoute from "./AdminRoute";
 import AddProduct from "../pages/AddProduct";
 import EditProduct from "../pages/EditProduct";
+import Orders from "../pages/Orders";
+import AdminOrders from "../pages/AdminOrders";
+import OrderDetails from "../pages/OrderDetails";
 
 // Add more imports as needed
 
@@ -28,6 +31,15 @@ const MainRoutes = () => (
       element={
         <AdminRoute>
           <AddProduct />
+        </AdminRoute>
+      }
+    />
+
+    <Route
+      path="/admin/orders"
+      element={
+        <AdminRoute>
+          <AdminOrders />
         </AdminRoute>
       }
     />
@@ -59,10 +71,28 @@ const MainRoutes = () => (
     />
 
     <Route
+      path="/orders"
+      element={
+        <PrivateRoute>
+          <Orders />
+        </PrivateRoute>
+      }
+    />
+
+    <Route
       path="/cart"
       element={
         <PrivateRoute>
           <Cart />
+        </PrivateRoute>
+      }
+    />
+
+    <Route
+      path="/orders/:orderId"
+      element={
+        <PrivateRoute>
+          <OrderDetails />{" "}
         </PrivateRoute>
       }
     />

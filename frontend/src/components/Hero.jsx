@@ -3,74 +3,46 @@ import React, { useRef, useEffect, useState } from "react";
 
 const liveCards = [
   {
-    img: "https://img.freepik.com/free-photo/portrait-young-happy-woman-studio_1303-13799.jpg?t=st=1750654476~exp=1750658076~hmac=e4fe67c71de29696bb3ee498a2e0083fdd2662af23d3c76acf2fd3b1a0de2ecd&w=900",
-    video:
-      "https://videos.openai.com/vg-assets/assets%2Ftask_01js5m0978f5d9f1a9b6zharzj%2Ftask_01js5m0978f5d9f1a9b6zharzj_genid_bd55d659-c83f-4cf7-b196-607e3c6eaac2_25_04_18_23_34_182553%2Fvideos%2F00000_837833298%2Fsource.mp4?st=2025-06-23T05%3A41%3A13Z&se=2025-06-29T06%3A41%3A13Z&sks=b&skt=2025-06-23T05%3A41%3A13Z&ske=2025-06-29T06%3A41%3A13Z&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skoid=3d249c53-07fa-4ba4-9b65-0bf8eb4ea46a&skv=2019-02-02&sv=2018-11-09&sr=b&sp=r&spr=https%2Chttp&sig=h4gw0xhY%2BhHOBQeM56fn8gsxG2tjcFHgipqOQVMYjpo%3D&az=oaivgprodscus",
+    img: "https://images.unsplash.com/photo-1736754074555-54b6abcb2fb4?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    video: "/video.mp4",
     followers: "12.3k",
     name: "Aisha Verma",
   },
   {
-    img: "https://img.freepik.com/free-photo/full-shot-super-woman-with-superpowers_23-2150168138.jpg?t=st=1750654625~exp=1750658225~hmac=7ee6b799a9640894c5dd46a6a42c1d7124ef4bbc350fa064a2d76f28bb65c918&w=900",
-    video:
-      "https://videos.openai.com/vg-assets/assets%2Ftask_01jn9839bjf1c8f34eprazgj0p%2Ftask_01jn9839bjf1c8f34eprazgj0p_genid_ca2d915b-735a-47f1-a55b-f8b8233397ee_25_03_01_16_19_182360%2Fvideos%2F00000_178613209%2Fsource.mp4?st=2025-06-23T05%3A42%3A28Z&se=2025-06-29T06%3A42%3A28Z&sks=b&skt=2025-06-23T05%3A42%3A28Z&ske=2025-06-29T06%3A42%3A28Z&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skoid=3d249c53-07fa-4ba4-9b65-0bf8eb4ea46a&skv=2019-02-02&sv=2018-11-09&sr=b&sp=r&spr=https%2Chttp&sig=tA7kUgvnjSFAOzd4f95VKVtqMt1VujxNhKalTx%2Fkzjc%3D&az=oaivgprodscus",
+    img: "https://images.unsplash.com/photo-1699693592017-4d59ecf2c282?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    video: "/video.mp4",
     followers: "8.7k",
     name: "Priya Singh",
   },
   {
-    img: "https://videos.openai.com/vg-assets/assets%2Ftask_01jxsjhqsyedx9pymnwmfnw7ms%2F1749983849_img_0.webp?st=2025-06-23T05%3A42%3A17Z&se=2025-06-29T06%3A42%3A17Z&sks=b&skt=2025-06-23T05%3A42%3A17Z&ske=2025-06-29T06%3A42%3A17Z&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skoid=3d249c53-07fa-4ba4-9b65-0bf8eb4ea46a&skv=2019-02-02&sv=2018-11-09&sr=b&sp=r&spr=https%2Chttp&sig=YRYcK%2FW2EX6rLs9e0UDPA2Gdq6DfrmcmDmpIWAXjK00%3D&az=oaivgprodscus",
-    video:
-      "https://videos.openai.com/vg-assets/assets%2Ftask_01jrhp033nfgfszrbedjeaxqfa%2Ftask_01jrhp033nfgfszrbedjeaxqfa_genid_e4e8545f-c139-434e-824f-141bba2d9b0d_25_04_11_05_45_796216%2Fvideos%2F00000_123588863%2Fsource.mp4?st=2025-06-23T05%3A39%3A53Z&se=2025-06-29T06%3A39%3A53Z&sks=b&skt=2025-06-23T05%3A39%3A53Z&ske=2025-06-29T06%3A39%3A53Z&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skoid=3d249c53-07fa-4ba4-9b65-0bf8eb4ea46a&skv=2019-02-02&sv=2018-11-09&sr=b&sp=r&spr=https%2Chttp&sig=FDCx9o9AbQGSFr19Mk5qAsdIyeBN6v8nzo3F3H2ACWw%3D&az=oaivgprodscus",
+    img: "https://images.unsplash.com/photo-1709033787737-0c8b1631e748?q=80&w=327&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    video: "/video.mp4",
     followers: "15.1k",
     name: "Meera Patel",
   },
   {
-    img: "https://img.freepik.com/free-photo/young-confident-man-black-shirt-with-optical-glasses-crosses-arms-looks-isolated-pink-wall_141793-35232.jpg?t=st=1750654968~exp=1750658568~hmac=a3adecdc005345cf3d2fe14eddba94cb33dfed1a5c9a35daf788a0da395441e4&w=900",
-    video:
-      "https://videos.openai.com/vg-assets/assets%2Ftask_01jma1kymde8j8yvcy1dyn9w6e%2Ftask_01jma1kymde8j8yvcy1dyn9w6e_genid_407b354b-3511-46f7-81c0-dad7d5f47f1a_25_02_17_13_30_025095%2Fvideos%2F00000_637227812%2Fsource.mp4?st=2025-06-23T05%3A39%3A27Z&se=2025-06-29T06%3A39%3A27Z&sks=b&skt=2025-06-23T05%3A39%3A27Z&ske=2025-06-29T06%3A39%3A27Z&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skoid=3d249c53-07fa-4ba4-9b65-0bf8eb4ea46a&skv=2019-02-02&sv=2018-11-09&sr=b&sp=r&spr=https%2Chttp&sig=DfGJyWcgHeEIGpOmM8eUlvfFLlIPR5iWY2dACAjOH30%3D&az=oaivgprodscus",
+    img: "https://images.unsplash.com/photo-1701170069071-ceac88e41d43?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    video: "/video.mp4",
     followers: "21.4k",
     name: "Rohan Malhotra",
   },
   {
-    img: "https://videos.openai.com/vg-assets/assets%2Ftask_01jy9v07vfegpa8jxke2erk62g%2F1750529512_img_3.webp?st=2025-06-23T02%3A00%3A13Z&se=2025-06-29T03%3A00%3A13Z&sks=b&skt=2025-06-23T02%3A00%3A13Z&ske=2025-06-29T03%3A00%3A13Z&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skoid=3d249c53-07fa-4ba4-9b65-0bf8eb4ea46a&skv=2019-02-02&sv=2018-11-09&sr=b&sp=r&spr=https%2Chttp&sig=onSnZwqXNg3mwxKBhGiefP4kkH%2FAhF86Sw%2BdIL3kya4%3D&az=oaivgprodscus",
-    video:
-      "https://videos.openai.com/vg-assets/assets%2Ftask_01jma1kymde8j8yvcy1dyn9w6e%2Ftask_01jma1kymde8j8yvcy1dyn9w6e_genid_407b354b-3511-46f7-81c0-dad7d5f47f1a_25_02_17_13_30_025095%2Fvideos%2F00000_637227812%2Fsource.mp4?st=2025-06-23T05%3A39%3A27Z&se=2025-06-29T06%3A39%3A27Z&sks=b&skt=2025-06-23T05%3A39%3A27Z&ske=2025-06-29T06%3A39%3A27Z&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skoid=3d249c53-07fa-4ba4-9b65-0bf8eb4ea46a&skv=2019-02-02&sv=2018-11-09&sr=b&sp=r&spr=https%2Chttp&sig=DfGJyWcgHeEIGpOmM8eUlvfFLlIPR5iWY2dACAjOH30%3D&az=oaivgprodscus",
+    img: "https://images.unsplash.com/photo-1741675121314-e46ce22a17d1?q=80&w=327&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    video: "/video.mp4",
     followers: "9.2k",
     name: "Simran Kaur",
   },
   {
-    img: "https://videos.openai.com/vg-assets/assets%2Ftask_01jyacmvvye2gb75kqdjjtrrsn%2F1750548071_img_2.webp?st=2025-06-23T02%3A01%3A08Z&se=2025-06-29T03%3A01%3A08Z&sks=b&skt=2025-06-23T02%3A01%3A08Z&ske=2025-06-29T03%3A01%3A08Z&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skoid=3d249c53-07fa-4ba4-9b65-0bf8eb4ea46a&skv=2019-02-02&sv=2018-11-09&sr=b&sp=r&spr=https%2Chttp&sig=wucPhW21YlommMg%2FE%2Fq96tAnyhqsqW3rZ%2BOavcfT6Fg%3D&az=oaivgprodscus",
-    video:
-      "https://videos.openai.com/vg-assets/assets%2Ftask_01jma1kymde8j8yvcy1dyn9w6e%2Ftask_01jma1kymde8j8yvcy1dyn9w6e_genid_407b354b-3511-46f7-81c0-dad7d5f47f1a_25_02_17_13_30_025095%2Fvideos%2F00000_637227812%2Fsource.mp4?st=2025-06-23T05%3A39%3A27Z&se=2025-06-29T06%3A39%3A27Z&sks=b&skt=2025-06-23T05%3A39%3A27Z&ske=2025-06-29T06%3A39%3A27Z&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skoid=3d249c53-07fa-4ba4-9b65-0bf8eb4ea46a&skv=2019-02-02&sv=2018-11-09&sr=b&sp=r&spr=https%2Chttp&sig=DfGJyWcgHeEIGpOmM8eUlvfFLlIPR5iWY2dACAjOH30%3D&az=oaivgprodscus",
+    img: "https://images.unsplash.com/photo-1658722449397-0f2e9db9d3a4?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    video: "/video.mp4",
     followers: "5.8k",
     name: "Arjun Desai",
   },
   {
-    img: "https://videos.openai.com/vg-assets/assets%2Ftask_01jyd8cf57enbbwtn7mye4tp0n%2F1750644276_img_0.webp?st=2025-06-23T03%3A51%3A16Z&se=2025-06-29T04%3A51%3A16Z&sks=b&skt=2025-06-23T03%3A51%3A16Z&ske=2025-06-29T04%3A51%3A16Z&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skoid=3d249c53-07fa-4ba4-9b65-0bf8eb4ea46a&skv=2019-02-02&sv=2018-11-09&sr=b&sp=r&spr=https%2Chttp&sig=PKRnIbJ%2Fegd0%2BLMnP7WwpL2VoUXuEHIIl6NwJFNlA2k%3D&az=oaivgprodscus",
-    video:
-      "https://videos.openai.com/vg-assets/assets%2Ftask_01jma1kymde8j8yvcy1dyn9w6e%2Ftask_01jma1kymde8j8yvcy1dyn9w6e_genid_407b354b-3511-46f7-81c0-dad7d5f47f1a_25_02_17_13_30_025095%2Fvideos%2F00000_637227812%2Fsource.mp4?st=2025-06-23T05%3A39%3A27Z&se=2025-06-29T06%3A39%3A27Z&sks=b&skt=2025-06-23T05%3A39%3A27Z&ske=2025-06-29T06%3A39%3A27Z&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skoid=3d249c53-07fa-4ba4-9b65-0bf8eb4ea46a&skv=2019-02-02&sv=2018-11-09&sr=b&sp=r&spr=https%2Chttp&sig=DfGJyWcgHeEIGpOmM8eUlvfFLlIPR5iWY2dACAjOH30%3D&az=oaivgprodscus",
+    img: "https://images.unsplash.com/photo-1729529886854-1a7fe529ce22?q=80&w=415&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    video: "/video.mp4",
     followers: "13.6k",
     name: "Neha Joshi",
-  },
-  {
-    img: "https://img.freepik.com/free-photo/funny-smiling-hipster-handsome-man-stylish-summer-cloth-street-sunglasses_158538-2105.jpg?t=st=1750655193~exp=1750658793~hmac=7f164bcbde280d6f4e1cbf6719f652de9ecabcb40c38fc1d0bc73b2f4b5be7e9&w=900",
-    video:
-      "https://videos.openai.com/vg-assets/assets%2Ftask_01jma1kymde8j8yvcy1dyn9w6e%2Ftask_01jma1kymde8j8yvcy1dyn9w6e_genid_407b354b-3511-46f7-81c0-dad7d5f47f1a_25_02_17_13_30_025095%2Fvideos%2F00000_637227812%2Fsource.mp4?st=2025-06-23T05%3A39%3A27Z&se=2025-06-29T06%3A39%3A27Z&sks=b&skt=2025-06-23T05%3A39%3A27Z&ske=2025-06-29T06%3A39%3A27Z&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skoid=3d249c53-07fa-4ba4-9b65-0bf8eb4ea46a&skv=2019-02-02&sv=2018-11-09&sr=b&sp=r&spr=https%2Chttp&sig=DfGJyWcgHeEIGpOmM8eUlvfFLlIPR5iWY2dACAjOH30%3D&az=oaivgprodscus",
-    followers: "7.9k",
-    name: "Kabir Mehta",
-  },
-  {
-    img: "https://videos.openai.com/vg-assets/assets%2Ftask_01jw773z21e0gs20jq9z2m9c41%2F1748294117_img_3.webp?st=2025-06-23T03%3A50%3A13Z&se=2025-06-29T04%3A50%3A13Z&sks=b&skt=2025-06-23T03%3A50%3A13Z&ske=2025-06-29T04%3A50%3A13Z&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skoid=3d249c53-07fa-4ba4-9b65-0bf8eb4ea46a&skv=2019-02-02&sv=2018-11-09&sr=b&sp=r&spr=https%2Chttp&sig=VxeRW65Gt62PiJI7ihSHIdKTz279A%2F8aO9LvkIcTtok%3D&az=oaivgprodscus",
-    video:
-      "https://videos.openai.com/vg-assets/assets%2Ftask_01jma1kymde8j8yvcy1dyn9w6e%2Ftask_01jma1kymde8j8yvcy1dyn9w6e_genid_407b354b-3511-46f7-81c0-dad7d5f47f1a_25_02_17_13_30_025095%2Fvideos%2F00000_637227812%2Fsource.mp4?st=2025-06-23T05%3A39%3A27Z&se=2025-06-29T06%3A39%3A27Z&sks=b&skt=2025-06-23T05%3A39%3A27Z&ske=2025-06-29T06%3A39%3A27Z&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skoid=3d249c53-07fa-4ba4-9b65-0bf8eb4ea46a&skv=2019-02-02&sv=2018-11-09&sr=b&sp=r&spr=https%2Chttp&sig=DfGJyWcgHeEIGpOmM8eUlvfFLlIPR5iWY2dACAjOH30%3D&az=oaivgprodscus",
-    followers: "11.2k",
-    name: "Tanvi Shah",
-  },
-  {
-    img: "https://videos.openai.com/vg-assets/assets%2Ftask_01jya02ba4f41tgr9dcnm1ywgm%2F1750534895_img_3.webp?st=2025-06-23T03%3A50%3A13Z&se=2025-06-29T04%3A50%3A13Z&sks=b&skt=2025-06-23T03%3A50%3A13Z&ske=2025-06-29T04%3A50%3A13Z&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skoid=3d249c53-07fa-4ba4-9b65-0bf8eb4ea46a&skv=2019-02-02&sv=2018-11-09&sr=b&sp=r&spr=https%2Chttp&sig=Si%2FwXarOLCHGidA4CgQAkoTECNgNeKAEJ19c06h3gto%3D&az=oaivgprodscus",
-    video:
-      "https://videos.openai.com/vg-assets/assets%2Ftask_01jma1kymde8j8yvcy1dyn9w6e%2Ftask_01jma1kymde8j8yvcy1dyn9w6e_genid_407b354b-3511-46f7-81c0-dad7d5f47f1a_25_02_17_13_30_025095%2Fvideos%2F00000_637227812%2Fsource.mp4?st=2025-06-23T05%3A39%3A27Z&se=2025-06-29T06%3A39%3A27Z&sks=b&skt=2025-06-23T05%3A39%3A27Z&ske=2025-06-29T06%3A39%3A27Z&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skoid=3d249c53-07fa-4ba4-9b65-0bf8eb4ea46a&skv=2019-02-02&sv=2018-11-09&sr=b&sp=r&spr=https%2Chttp&sig=DfGJyWcgHeEIGpOmM8eUlvfFLlIPR5iWY2dACAjOH30%3D&az=oaivgprodscus",
-    followers: "6.4k",
-    name: "Ritika Jain",
   },
 ];
 

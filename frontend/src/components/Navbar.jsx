@@ -65,17 +65,8 @@ const Navbar = () => {
           .filter(
             (link) => !link.adminOnly || (currentUser && currentUser.isAdmin)
           )
-          .map((link, idx) => (
-            <motion.div
-              key={link.label}
-              initial={{ y: -20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{
-                duration: 0.5,
-                delay: 0.3 + idx * 0.15,
-                ease: "easeOut",
-              }}
-            >
+          .map((link) => (
+            <div key={link.label}>
               <NavLink
                 to={link.to}
                 className={({ isActive }) =>
@@ -87,11 +78,11 @@ const Navbar = () => {
               >
                 {link.label}
               </NavLink>
-            </motion.div>
+            </div>
           ))}
 
         {/* User/Profile NavLink as the last item */}
-        <motion.div className="flex items-center gap-3">
+        <div className="flex items-center gap-3">
           {/* You can add extra menu items here if needed */}
 
           {!currentUser ? (
@@ -131,12 +122,25 @@ const Navbar = () => {
                     >
                       Logout
                     </button>
+
+                    {currentUser?.isAdmin && (
+                      <NavLink
+                        to="/admin/orders"
+                        className="block px-4 py-2 hover:bg-gray-100"
+                        onClick={() => {
+                          setShowMenu(false);
+                          setOpen(false);
+                        }}
+                      >
+                        Admin Panel
+                      </NavLink>
+                    )}
                   </div>
                 )}
               </div>
             </>
           )}
-        </motion.div>
+        </div>
       </nav>
       {/* Mobile Hamburger */}
       <div

@@ -226,6 +226,27 @@ const Profile = () => {
                 <Link to="/cart" className="text-sm text-gray-500">
                   🛒 Cart Items: {currentUser.cart?.length || 0}
                 </Link>
+                <br />
+                {currentUser?.isAdmin && (
+                  <div className="mt-4">
+                    <Link
+                      to="/admin/orders"
+                      className="inline-block bg-black text-white px-4 py-2 rounded hover:bg-gray-800 transition"
+                    >
+                      🛠️ View All Orders (Admin)
+                    </Link>
+                  </div>
+                )}
+
+                {!currentUser?.isAdmin && (
+                  <Link
+                    to="/orders"
+                    className="text-sm text-blue-600 hover:underline"
+                  >
+                    📦 My Orders
+                  </Link>
+                )}
+
                 <div className="mt-4 flex flex-wrap gap-3 justify-center sm:justify-start">
                   <button
                     onClick={() => setEditMode(true)}

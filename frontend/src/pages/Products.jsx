@@ -3,6 +3,24 @@ import ProductCard from "./ProductCard";
 import { setProducts } from "../store/product/productSlice";
 import { getAllProducts } from "../api/productsApi"; // 🟢 API call
 import { useDispatch, useSelector } from "react-redux";
+import { motion } from "framer-motion";
+// import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+const container = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2,
+    },
+  },
+};
+
+const card = {
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0 },
+};
 
 const Products = () => {
   const dispatch = useDispatch();
@@ -28,6 +46,11 @@ const Products = () => {
     setFiltered(result);
   }, [search, products]);
 
+  // const handleAddToCart = () => {
+  //   // ...your add to cart logic...
+  //   toast.success("Product added to cart!");
+  // };
+
   return (
     <div className="p-6">
       {/* 🔍 Search Input */}
@@ -50,11 +73,20 @@ const Products = () => {
             No products found.
           </p>
         ) : (
-          filtered.map((product) => (
-            <ProductCard key={`${product.id}`} p={product} />
+          filtered.map((p) => (
+            <motion.div
+              variants={card}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
+              key={p.id}
+            >
+              <ProductCard p={p} />
+            </motion.div>
           ))
         )}
       </section>
+      
     </div>
   );
 };
